@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alabama Digital Learning — Virtual Field Trips, All Schedules</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <style>
+    :root {
+      --navy:        #0D2F5E;
+      --blue:        #1565C0;
+      --blue2:       #1976D2;
+      --blue-pale:   #E8F1FB;
+      --blue-border: #BBDEFB;
+      --gold:        #F59E0B;
+      --bg:          #F4F8FF;
+      --white:       #ffffff;
+      --border:      #D0DEF0;
+      --text:        #1A1A1A;
+      --muted:       #4A5568;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100vh; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: #fff;
+      padding: 28px 32px 22px;
+    }
+    .header-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; opacity: 0.75; margin-bottom: 6px;
+    }
+    header h1 { font-size: 28px; font-weight: 800; line-height: 1.2; }
+    header h1 span { color: #90CAF9; }
+    .header-sub { font-size: 13px; opacity: 0.8; margin-top: 6px; }
+
+    /* ── MAIN ── */
+    main { max-width: 960px; margin: 0 auto; padding: 28px 32px; }
+
+    /* ── INTRO / INFO BOXES ── */
+    .intro-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--muted);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .intro-box p + p { margin-top: 10px; }
+    .intro-box a { color: var(--blue); }
+
+    /* ── COMING SOON BOX ── */
+    .soon-box {
+      background: var(--blue-pale);
+      border: 2px dashed var(--blue-border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .soon-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
+    }
+    .soon-title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .soon-body { font-size: 13px; color: var(--muted); }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--blue);
+      margin: 24px 0 12px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--blue-border);
+    }
+
+    /* ── ARCHIVE ── */
+    .archive-year {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+    .archive-year-title {
+      font-size: 13px; font-weight: 800; color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .archive-grid {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .archive-link {
+      display: inline-block;
+      background: var(--blue-pale);
+      border: 1px solid var(--blue-border);
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .archive-link:hover { background: var(--blue); color: #fff; }
+
+    /* ── LINKS BOX ── */
+    .links-box {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 8px;
+      padding: 14px 22px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    .links-box-label {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; opacity: 0.7; flex-basis: 100%;
+      margin-bottom: 2px;
+    }
+    .link-item a {
+      display: flex; flex-direction: column; gap: 2px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 6px;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .link-item a:hover { background: rgba(255,255,255,0.22); }
+    .link-item-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.65; color: #fff; }
+    .link-item-url { font-size: 13px; font-weight: 700; color: #90CAF9; letter-spacing: 0.01em; }
+
+    /* ── PRINT BUTTON ── */
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 20px;
+      font-family: inherit;
+    }
+    .print-btn:hover { background: var(--navy); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 8px 32px 32px;
+      font-size: 11px;
+      color: #888;
+    }
+    footer a { color: #888; }
+    footer strong { color: #555; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body { background: #fff; font-size: 12px; }
+      .print-btn { display: none; }
+      header { background: #0D2F5E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 24px; }
+      .links-box { background: #0D2F5E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 10px 16px; border-radius: 4px; }
+      .soon-box { background: #E8F1FB !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main { padding: 16px 24px; }
+      .archive-year { break-inside: avoid; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-eyebrow">Alabama State Department of Education</div>
+    <h1>Alabama Digital Learning<br/><span>Virtual Field Trips</span></h1>
+    <div class="header-sub">All Schedules &mdash; Current &amp; Archived &bull; Delivered via Zoom &bull; Free to Alabama Classrooms</div>
+  </header>
+
+  <main>
+
+    <button class="print-btn" onclick="window.print()">
+      &#128438; Print This Page
+    </button>
+
+    <div class="links-box">
+      <div class="links-box-label">Quick Reference Links</div>
+      <div class="link-item">
+        <a href="https://bit.ly/ALVFThome" target="_blank" rel="noopener">
+          <span class="link-item-label">This Document</span>
+          <span class="link-item-url">bit.ly/ALVFThome</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="intro-box">
+      <p>The Alabama State Department of Education (SDE) invites you to participate in our popular monthly Virtual Field Trips. Alabama has been a trailblazer using technology for the purpose of advancing education. Alabama Connecting Classrooms, Educators, and Students Statewide (ACCESS), Alabama Learning Exchange (ALEX), Alabama Technology in Motion (ATiM), and e-Learning for Educators are all strong tools used for the advancement of digital learning, in addition to the expansive ways technology is used in the classroom.</p>
+      <p>Below is a listing of schedules up to and including the current month.</p>
+    </div>
+
+    <!-- ── CURRENT MONTH ── -->
+    <p class="section-heading">Current Month&rsquo;s Offerings</p>
+    <div class="soon-box">
+      <div class="soon-eyebrow">Coming Soon</div>
+      <div class="soon-title">September 2026 Virtual Field Trip Schedule</div>
+      <div class="soon-body">Sessions are being scheduled for the 2026&ndash;27 school year. Check back soon for the September schedule, sign-up link, and attendance reporting link.</div>
+    </div>
+
+    <!-- ── ARCHIVED SCHEDULES ── -->
+    <p class="section-heading">Archived Schedules</p>
+
+    <div class="archive-year">
+      <div class="archive-year-title">2025&ndash;26 School Year</div>
+      <div class="archive-grid">
+        <a class="archive-link" href="https://bit.ly/ALVFTApr26" target="_blank" rel="noopener">April 2026</a>
+        <a class="archive-link" href="https://bit.ly/ALVFTMar26" target="_blank" rel="noopener">March 2026</a>
+        <a class="archive-link" href="https://bit.ly/ALVFTFeb26" target="_blank" rel="noopener">February 2026</a>
+        <a class="archive-link" href="https://bit.ly/ALVFTJan26" target="_blank" rel="noopener">January 2026</a>
+        <a class="archive-link" href="https://bit.ly/ALVFTDec25" target="_blank" rel="noopener">December 2025</a>
+        <a class="archive-link" href="http://bit.ly/ALVFTNov25" target="_blank" rel="noopener">November 2025</a>
+        <a class="archive-link" href="http://bit.ly/ALVFTOct25" target="_blank" rel="noopener">October 2025</a>
+        <a class="archive-link" href="https://docs.google.com/document/d/1C13eTUyf6mTPLg7olZsYx5BSAhtAggv_HSl88ayYS2A/export?format=pdf" target="_blank" rel="noopener">September 2025</a>
+      </div>
+    </div>
+
+    <div class="archive-year">
+      <div class="archive-year-title">2024&ndash;25 School Year</div>
+      <div class="archive-grid">
+        <a class="archive-link" href="https://alvft.link/Apr25" target="_blank" rel="noopener">April 2025</a>
+        <a class="archive-link" href="https://alvft.link/Mar25" target="_blank" rel="noopener">March 2025</a>
+        <a class="archive-link" href="https://alvft.link/Feb25" target="_blank" rel="noopener">February 2025</a>
+        <a class="archive-link" href="https://alvft.link/Jan25" target="_blank" rel="noopener">January 2025</a>
+        <a class="archive-link" href="https://alvft.link/Dec24" target="_blank" rel="noopener">December 2024</a>
+        <a class="archive-link" href="https://alvft.link/Nov24" target="_blank" rel="noopener">November 2024</a>
+        <a class="archive-link" href="https://alvft.link/Oct24" target="_blank" rel="noopener">October 2024</a>
+        <a class="archive-link" href="https://alvft.link/Sep24" target="_blank" rel="noopener">September 2024</a>
+      </div>
+    </div>
+
+    <div class="archive-year">
+      <div class="archive-year-title">2023&ndash;24 School Year</div>
+      <div class="archive-grid">
+        <a class="archive-link" href="https://alvft.link/Apr24" target="_blank" rel="noopener">April 2024</a>
+        <a class="archive-link" href="https://alvft.link/Mar24" target="_blank" rel="noopener">March 2024</a>
+        <a class="archive-link" href="https://alvft.link/Feb24" target="_blank" rel="noopener">February 2024</a>
+        <a class="archive-link" href="https://alvft.link/Jan24" target="_blank" rel="noopener">January 2024</a>
+        <a class="archive-link" href="https://alvft.link/Dec23" target="_blank" rel="noopener">December 2023</a>
+        <a class="archive-link" href="https://alvft.link/Nov23" target="_blank" rel="noopener">November 2023</a>
+        <a class="archive-link" href="https://alvft.link/Oct23" target="_blank" rel="noopener">October 2023</a>
+        <a class="archive-link" href="https://alvft.link/Sep23" target="_blank" rel="noopener">September 2023</a>
+      </div>
+    </div>
+
+    <div class="archive-year">
+      <div class="archive-year-title">2022&ndash;23 School Year</div>
+      <div class="archive-grid">
+        <a class="archive-link" href="https://alvft.link/Apr23" target="_blank" rel="noopener">April 2023</a>
+        <a class="archive-link" href="https://alvft.link/mar23" target="_blank" rel="noopener">March 2023</a>
+        <a class="archive-link" href="https://alvft.link/feb23" target="_blank" rel="noopener">February 2023</a>
+        <a class="archive-link" href="https://alvft.link/jan23" target="_blank" rel="noopener">January 2023</a>
+        <a class="archive-link" href="https://alvft.link/Dec22" target="_blank" rel="noopener">December 2022</a>
+        <a class="archive-link" href="https://alvft.link/Nov22" target="_blank" rel="noopener">November 2022</a>
+        <a class="archive-link" href="https://alvft.link/oct22" target="_blank" rel="noopener">October 2022</a>
+        <a class="archive-link" href="http://alvft.link/Sep22" target="_blank" rel="noopener">September 2022</a>
+      </div>
+    </div>
+
+    <div class="archive-year">
+      <div class="archive-year-title">2021&ndash;22 School Year</div>
+      <div class="archive-grid">
+        <a class="archive-link" href="http://alvft.link/Apr22" target="_blank" rel="noopener">April 2022</a>
+        <a class="archive-link" href="http://alvft.link/Mar22" target="_blank" rel="noopener">March 2022</a>
+        <a class="archive-link" href="https://alvft.link/Feb22" target="_blank" rel="noopener">February 2022</a>
+        <a class="archive-link" href="https://alvft.link/Jan22" target="_blank" rel="noopener">January 2022</a>
+        <a class="archive-link" href="http://alvft.link/Dec21" target="_blank" rel="noopener">December 2021</a>
+        <a class="archive-link" href="https://alvft.link/Nov21" target="_blank" rel="noopener">November 2021</a>
+        <a class="archive-link" href="https://alvft.link/oct21" target="_blank" rel="noopener">October 2021</a>
+      </div>
+    </div>
+
+    <div class="archive-year">
+      <div class="archive-year-title">2020&ndash;21 School Year</div>
+      <div class="archive-grid">
+        <a class="archive-link" href="https://alvft.link/Apr21" target="_blank" rel="noopener">April 2021</a>
+        <a class="archive-link" href="https://alvft.link/Mar21" target="_blank" rel="noopener">March 2021</a>
+        <a class="archive-link" href="https://drive.google.com/file/d/10rn2vNRT8hkJZMWYoHh5G9u84T77IIlj/view?usp=sharing" target="_blank" rel="noopener">February 2021</a>
+        <a class="archive-link" href="https://alvft.link/Jan21" target="_blank" rel="noopener">January 2021</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    All schedules at <a href="https://bit.ly/ALVFThome">bit.ly/ALVFThome</a>
+  </footer>
+
+</body>
+</html>
