@@ -14,6 +14,7 @@
       --blue-pale:   #E8F1FB;
       --blue-border: #BBDEFB;
       --gold:        #F59E0B;
+      --green:       #16A34A;
       --bg:          #F4F8FF;
       --white:       #ffffff;
       --border:      #D0DEF0;
@@ -70,6 +71,37 @@
     }
     .soon-title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
     .soon-body { font-size: 13px; color: var(--muted); }
+
+    /* ── CURRENT MONTH (LIVE) BOX ── */
+    .current-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .current-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 6px;
+    }
+    .current-title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .current-body { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .current-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .current-link {
+      display: inline-block;
+      border-radius: 6px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .current-link.schedule { background: var(--navy); color: #fff; }
+    .current-link.schedule:hover { background: var(--blue); }
+    .current-link.signup { background: var(--gold); color: #1A1A1A; }
+    .current-link.signup:hover { background: #D97706; }
+    .current-link.attendance { background: var(--green); color: #fff; }
+    .current-link.attendance:hover { background: #15803D; }
 
     /* ── SECTION HEADING ── */
     .section-heading {
@@ -197,9 +229,9 @@
     <div class="links-box">
       <div class="links-box-label">Quick Reference Links</div>
       <div class="link-item">
-        <a href="https://bit.ly/ALVFThome" target="_blank" rel="noopener">
+        <a href="https://bit.ly/ALVFT-home" target="_blank" rel="noopener">
           <span class="link-item-label">This Document</span>
-          <span class="link-item-url">bit.ly/ALVFThome</span>
+          <span class="link-item-url">bit.ly/ALVFT-home</span>
         </a>
       </div>
     </div>
@@ -211,10 +243,15 @@
 
     <!-- ── CURRENT MONTH ── -->
     <p class="section-heading">Current Month&rsquo;s Offerings</p>
-    <div class="soon-box">
-      <div class="soon-eyebrow">Coming Soon</div>
-      <div class="soon-title">September 2026 Virtual Field Trip Schedule</div>
-      <div class="soon-body">Sessions are being scheduled for the 2026&ndash;27 school year. Check back soon for the September schedule, sign-up link, and attendance reporting link.</div>
+    <div class="current-box">
+      <div class="current-eyebrow">Now Open</div>
+      <div class="current-title">September 2026 Virtual Field Trip Schedule</div>
+      <div class="current-body">View the full September schedule, sign up your class for sessions, and report attendance after each session.</div>
+      <div class="current-links">
+        <a class="current-link schedule" href="https://bit.ly/ALVFTSep26" target="_blank" rel="noopener">View Full Schedule</a>
+        <a class="current-link signup" href="https://bit.ly/ALVFTSepSignup" target="_blank" rel="noopener">Sign Up</a>
+        <a class="current-link attendance" href="https://bit.ly/ALVFTSepAttendance" target="_blank" rel="noopener">Report Attendance</a>
+      </div>
     </div>
 
     <!-- ── ARCHIVED SCHEDULES ── -->
@@ -302,7 +339,7 @@
   </main>
 
   <footer>
-    All schedules at <a href="https://bit.ly/ALVFThome">bit.ly/ALVFThome</a>
+    All schedules at <a href="https://bit.ly/ALVFT-home">bit.ly/ALVFT-home</a>
   </footer>
 
 </body>

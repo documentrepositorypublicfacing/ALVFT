@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alabama Digital Learning — Virtual Field Trips, September 2026</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <style>
+    :root {
+      --navy:        #0D2F5E;
+      --blue:        #1565C0;
+      --blue2:       #1976D2;
+      --blue-pale:   #E8F1FB;
+      --blue-border: #BBDEFB;
+      --gold:        #F59E0B;
+      --green:       #16A34A;
+      --bg:          #F4F8FF;
+      --white:       #ffffff;
+      --border:      #D0DEF0;
+      --text:        #1A1A1A;
+      --muted:       #4A5568;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100vh; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: #fff;
+      padding: 28px 32px 22px;
+    }
+    .header-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; opacity: 0.75; margin-bottom: 6px;
+    }
+    header h1 { font-size: 28px; font-weight: 800; line-height: 1.2; }
+    header h1 span { color: #90CAF9; }
+    .header-sub { font-size: 13px; opacity: 0.8; margin-top: 6px; }
+
+
+    /* ── MAIN ── */
+    main { max-width: 960px; margin: 0 auto; padding: 28px 32px; }
+
+    /* ── INTRO / INFO BOXES ── */
+    .intro-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--muted);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .intro-box p + p { margin-top: 10px; }
+    .intro-box a { color: var(--blue); }
+
+    .zoom-box {
+      background: var(--blue-pale);
+      border: 1px solid var(--blue-border);
+      border-left: 4px solid var(--blue);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #1A3A6B;
+    }
+    .zoom-box strong { color: var(--navy); }
+
+    .camera-callout {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 8px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--blue);
+      margin: 24px 0 12px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--blue-border);
+    }
+
+    /* ── SCHEDULE TABLE ── */
+    .schedule-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      margin-bottom: 28px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead tr { background: var(--blue); color: #fff; }
+    thead th { padding: 10px 16px; text-align: left; font-weight: 700; letter-spacing: 0.03em; }
+    tbody tr { border-bottom: 1px solid #EEF3FB; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) { background: var(--blue-pale); }
+    tbody td { padding: 9px 16px; color: var(--muted); }
+    tbody td:first-child { font-weight: 600; color: var(--navy); white-space: nowrap; }
+    tbody td:nth-child(2) { white-space: nowrap; }
+
+    /* ── SESSION CARDS ── */
+    .session-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+    }
+    .session-header {
+      background: var(--blue);
+      color: #fff;
+      padding: 12px 18px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .session-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
+    .session-presenter { font-size: 12px; opacity: 0.85; margin-top: 3px; }
+    .grade-badge {
+      background: var(--gold);
+      color: #1A1A1A;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+    .session-meta {
+      background: #EBF2FF;
+      border-bottom: 1px solid var(--blue-border);
+      padding: 8px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--navy);
+      font-weight: 600;
+    }
+    .session-meta span::before {
+      content: "📅 ";
+    }
+    .session-body {
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .session-body p + p { margin-top: 10px; }
+    .session-body em { font-style: italic; color: #5a6a8a; }
+
+    .topic-list { list-style: none; padding: 0; margin: 8px 0; }
+    .topic-list li {
+      padding: 5px 0 5px 18px;
+      border-bottom: 1px solid #f0f4fb;
+      font-size: 13px;
+      color: var(--muted);
+      position: relative;
+    }
+    .topic-list li:last-child { border-bottom: none; }
+    .topic-list li::before {
+      content: "›";
+      position: absolute; left: 4px;
+      color: var(--blue); font-weight: 700; font-size: 15px;
+    }
+
+    .standards-box {
+      background: var(--blue-pale);
+      border: 1px solid var(--blue-border);
+      border-radius: 4px;
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #1A3A6B;
+    }
+    .standards-box strong { font-weight: 700; display: block; margin-bottom: 4px; color: var(--navy); }
+    .standards-box li { margin-left: 16px; margin-bottom: 3px; }
+
+    .resource-link {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--blue-pale);
+      border: 1px solid var(--blue-border);
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .resource-link:hover { background: var(--blue); color: #fff; }
+
+    /* ── LINKS BOX ── */
+    .links-box {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 8px;
+      padding: 14px 22px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    .links-box-label {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; opacity: 0.7; flex-basis: 100%;
+      margin-bottom: 2px;
+    }
+    .link-item a {
+      display: flex; flex-direction: column; gap: 2px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 6px;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .link-item a:hover { background: rgba(255,255,255,0.22); }
+    .link-item-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.65; color: #fff; }
+    .link-item-url { font-size: 13px; font-weight: 700; color: #90CAF9; letter-spacing: 0.01em; }
+    .link-item.signup a { background: var(--gold); border-color: var(--gold); }
+    .link-item.signup a:hover { background: #D97706; border-color: #D97706; }
+    .link-item.signup .link-item-label { color: rgba(0,0,0,0.6); }
+    .link-item.signup .link-item-url { color: #1A1A1A; }
+    .link-item.attendance a { background: var(--green); border-color: var(--green); }
+    .link-item.attendance a:hover { background: #15803D; border-color: #15803D; }
+    .link-item.attendance .link-item-label { color: rgba(0,0,0,0.55); }
+    .link-item.attendance .link-item-url { color: #0B2F17; }
+    .link-divider { width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; margin: 0 4px; }
+
+    /* ── PRINT BUTTON ── */
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 20px;
+      font-family: inherit;
+    }
+    .print-btn:hover { background: var(--navy); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 8px 32px 32px;
+      font-size: 11px;
+      color: #888;
+    }
+    footer a { color: #888; }
+    footer strong { color: #555; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body { background: #fff; font-size: 12px; }
+      .print-btn { display: none; }
+      header { background: #0D2F5E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 24px; }
+      .links-box { background: #0D2F5E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 10px 16px; border-radius: 4px; }
+      .session-header { background: #1565C0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .session-meta { background: #E8F1FB !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      thead tr { background: #1565C0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      tbody tr:nth-child(even) { background: #E8F1FB !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .grade-badge { background: #F59E0B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .camera-callout { background: #0D2F5E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .standards-box { background: #E8F1FB !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main { padding: 16px 24px; }
+      .session-card { break-inside: avoid; page-break-inside: avoid; }
+      .schedule-wrap { break-inside: avoid; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-eyebrow">Alabama State Department of Education</div>
+    <h1>Alabama Digital Learning<br/><span>Virtual Field Trips &mdash; September 2026</span></h1>
+    <div class="header-sub">Delivered via Zoom &bull; Free to Alabama Classrooms</div>
+  </header>
+
+  <main>
+
+    <button class="print-btn" onclick="window.print()">
+      &#128438; Print This Page
+    </button>
+
+    <div class="links-box">
+      <div class="links-box-label">Quick Reference Links</div>
+      <div class="link-item signup">
+        <a href="https://bit.ly/ALVFTSepSignup" target="_blank" rel="noopener">
+          <span class="link-item-label">Sign Up for September Sessions</span>
+          <span class="link-item-url">bit.ly/ALVFTSepSignup</span>
+        </a>
+      </div>
+      <div class="link-item attendance">
+        <a href="https://bit.ly/ALVFTSepAttendance" target="_blank" rel="noopener">
+          <span class="link-item-label">Report Attendance</span>
+          <span class="link-item-url">bit.ly/ALVFTSepAttendance</span>
+        </a>
+      </div>
+      <div class="link-item">
+        <a href="http://bit.ly/ALVFTSep26" target="_blank" rel="noopener">
+          <span class="link-item-label">This Document</span>
+          <span class="link-item-url">bit.ly/ALVFTSep26</span>
+        </a>
+      </div>
+      <div class="link-item">
+        <a href="https://bit.ly/ALVFT-home" target="_blank" rel="noopener">
+          <span class="link-item-label">All Schedules</span>
+          <span class="link-item-url">bit.ly/ALVFT-home</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="intro-box">
+      <p>The Alabama State Department of Education (SDE) invites you to participate in our popular monthly Virtual Field Trips. Alabama has been a trailblazer using technology for the purpose of advancing education. Alabama Connecting Classrooms, Educators, and Students Statewide (ACCESS), Alabama Learning Exchange (ALEX), Alabama Technology in Motion (ATiM), and e-Learning for Educators are all strong tools used for the advancement of digital learning, in addition to the expansive ways technology is used in the classroom.</p>
+    </div>
+
+    <div class="zoom-box">
+      <strong>Joining via Zoom:</strong> Create a free account and download the Zoom app, or go to <a href="https://zoom.us" target="_blank" rel="noopener">zoom.us</a> and click &ldquo;Join a Meeting.&rdquo; Check with your technology coordinator about displaying on a TV or large screen. A stand-alone mic may be needed if your computer does not have one. For testing or questions, contact the <strong>Alabama Supercomputer Help Desk: 1-800-338-8320</strong>.
+    </div>
+
+    <!-- ── SCHEDULE TABLE ── -->
+    <p class="section-heading">September 2026 Schedule at a Glance</p>
+    <div class="schedule-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Session</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>September 8</td><td>9:00&ndash;10:00 AM</td><td>Movement and Motion</td></tr>
+          <tr><td>September 8</td><td>10:15&ndash;11:15 AM</td><td>Careers in the NFL</td></tr>
+          <tr><td>September 9</td><td>9:00&ndash;10:00 AM</td><td>Careers in the NFL</td></tr>
+          <tr><td>September 9</td><td>10:15&ndash;11:15 AM</td><td>Movement and Motion</td></tr>
+          <tr><td>September 10</td><td>9:00&ndash;10:00 AM</td><td>A Journey Into the Life of Helen Keller</td></tr>
+          <tr><td>September 10</td><td>10:15&ndash;11:15 AM</td><td>Amazing African Americans from Alabama, 1st Edition</td></tr>
+          <tr><td>September 15</td><td>9:00&ndash;10:00 AM</td><td>First Peoples</td></tr>
+          <tr><td>September 15</td><td>10:15&ndash;11:15 AM</td><td>First Peoples</td></tr>
+          <tr><td>September 16</td><td>9:00&ndash;10:00 AM</td><td>American Women Who Changed History</td></tr>
+          <tr><td>September 16</td><td>10:15&ndash;11:15 AM</td><td>A Journey Into the Life of Helen Keller</td></tr>
+          <tr><td>September 17</td><td>9:00&ndash;10:00 AM</td><td>Amazing African Americans from Alabama, 1st Edition</td></tr>
+          <tr><td>September 17</td><td>10:15&ndash;11:15 AM</td><td>Amazing African Americans from Alabama, 2nd Edition</td></tr>
+          <tr><td>September 22</td><td>9:00&ndash;10:00 AM</td><td>First Peoples</td></tr>
+          <tr><td>September 22</td><td>10:15&ndash;11:15 AM</td><td>First Peoples</td></tr>
+          <tr><td>September 23</td><td>9:00&ndash;10:00 AM</td><td>FINishing Up the Summer with FINtastics Fishes</td></tr>
+          <tr><td>September 23</td><td>10:15&ndash;11:15 AM</td><td>FINishing Up the Summer with FINtastics Fishes</td></tr>
+          <tr><td>September 24</td><td>9:00&ndash;10:00 AM</td><td>A Journey Into the Life of Helen Keller</td></tr>
+          <tr><td>September 24</td><td>10:15&ndash;11:15 AM</td><td>A Journey Into the Life of Helen Keller</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="camera-callout">
+      Please leave your classroom cameras on if possible.<br/>
+      Presenters very much appreciate seeing the students they are presenting to.
+    </div>
+
+    <!-- ── SESSION DETAILS ── -->
+    <p class="section-heading">Session Descriptions</p>
+
+    <!-- Movement and Motion -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">Movement and Motion</div>
+          <div class="session-presenter">Jerry Csaki, Senior Director of Education and Leadership, Pro Football Hall of Fame</div>
+        </div>
+        <div class="grade-badge">Grades 5&ndash;12</div>
+      </div>
+      <div class="session-meta">
+        <span>September 8 &mdash; 9:00&ndash;10:00 AM</span>
+        <span>September 9 &mdash; 10:15&ndash;11:15 AM</span>
+      </div>
+      <div class="session-body">
+        <p>This program examines the relationship of science and the game of professional football. Straight-line movement, zig-zags, circular motion, back &amp; forth, pushing &amp; pulling &mdash; all movements that influence the sport. This 50-minute, highly interactive program is supplemented by a lesson aligned with Common Core/National Standards of Education.</p>
+        <div style="margin-top:12px;">
+          <a class="resource-link" href="https://alvft.link/motionactivity" target="_blank" rel="noopener">&#128196; Classroom Activity</a>
+          &nbsp;
+          <a class="resource-link" href="https://alvft.link/motionvideo" target="_blank" rel="noopener">&#9654; Supplemental Video</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Careers in the NFL -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">Careers in the NFL</div>
+          <div class="session-presenter">Jerry Csaki, Senior Director of Education and Leadership, Pro Football Hall of Fame</div>
+        </div>
+        <div class="grade-badge">Grades 5&ndash;12</div>
+      </div>
+      <div class="session-meta">
+        <span>September 8 &mdash; 10:15&ndash;11:15 AM</span>
+        <span>September 9 &mdash; 9:00&ndash;10:00 AM</span>
+      </div>
+      <div class="session-body">
+        <p>This program examines the importance of education and the hundreds of careers available in and around the National Football League. A 10-minute career video examining a wide variety of careers with the San Francisco 49ers organization is shown during the session. The 50-minute, highly interactive program is supplemented by a lesson aligned with Common Core/National Standards of Education.</p>
+        <a class="resource-link" href="https://alvft.link/nflcareers" target="_blank" rel="noopener">&#128196; Classroom Activity</a>
+      </div>
+    </div>
+
+    <!-- Helen Keller -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">A Journey Into the Life of Helen Keller</div>
+          <div class="session-presenter">Keller Johnson-Thompson, great-grandniece of Helen Keller and President of the Helen Keller Foundation</div>
+        </div>
+        <div class="grade-badge">Grades 3&ndash;12</div>
+      </div>
+      <div class="session-meta">
+        <span>September 10 &mdash; 9:00&ndash;10:00 AM</span>
+        <span>September 16 &mdash; 10:15&ndash;11:15 AM</span>
+        <span>September 24 &mdash; 9:00&ndash;10:00 AM</span>
+        <span>September 24 &mdash; 10:15&ndash;11:15 AM</span>
+      </div>
+      <div class="session-body">
+        <p>Keller Johnson-Thompson, great-grandniece of Helen Keller and President of the Helen Keller Education Foundation, offers teachers a meaningful and engaging way to bring Helen Keller&rsquo;s story to life for students. This presentation takes students on a memorable journey through the remarkable life of Helen Keller, America&rsquo;s First Lady of Courage &mdash; from her childhood in Tuscumbia, Alabama, to her travels and influence around the world.</p>
+        <p>More than a history lesson, this program helps students understand perseverance, empathy, courage, and the importance of strong character. By connecting Helen Keller&rsquo;s inspiring example to values students can use in their own lives, this presentation supports classroom learning while encouraging students to believe in their ability to make a positive difference in the world.</p>
+      </div>
+    </div>
+
+    <!-- Amazing African Americans 1st Edition -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">Amazing African Americans from Alabama, 1st Edition</div>
+          <div class="session-presenter">Keller Johnson-Thompson, President, Helen Keller Foundation</div>
+        </div>
+        <div class="grade-badge">Grades 5&ndash;12</div>
+      </div>
+      <div class="session-meta">
+        <span>September 10 &mdash; 10:15&ndash;11:15 AM</span>
+        <span>September 17 &mdash; 9:00&ndash;10:00 AM</span>
+      </div>
+      <div class="session-body">
+        <p>Alabama&rsquo;s history is filled with extraordinary African Americans whose courage, creativity, leadership, and determination helped shape our state, our nation, and the world. This field trip gives teachers a powerful opportunity to introduce students to inspiring real-life role models who prove that history is not just something to read about; it is something students can connect with, question, and carry forward. Through these remarkable stories, students will discover examples of resilience, achievement, and service that can spark classroom conversations, build pride in Alabama&rsquo;s rich heritage, and encourage every student to imagine the difference they too can make.</p>
+      </div>
+    </div>
+
+    <!-- Amazing African Americans 2nd Edition -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">Amazing African Americans from Alabama, 2nd Edition</div>
+          <div class="session-presenter">Keller Johnson-Thompson, President, Helen Keller Foundation</div>
+        </div>
+        <div class="grade-badge">Grades 5&ndash;12</div>
+      </div>
+      <div class="session-meta">
+        <span>September 17 &mdash; 10:15&ndash;11:15 AM</span>
+      </div>
+      <div class="session-body">
+        <p>Alabama&rsquo;s history is filled with extraordinary African Americans whose courage, creativity, leadership, and determination helped shape our state, our nation, and the world. This field trip gives teachers a powerful opportunity to introduce students to inspiring real-life role models who prove that history is not just something to read about; it is something students can connect with, question, and carry forward. Through these remarkable stories, students will discover examples of resilience, achievement, and service that can spark classroom conversations, build pride in Alabama&rsquo;s rich heritage, and encourage every student to imagine the difference they too can make.</p>
+      </div>
+    </div>
+
+    <!-- First Peoples -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">First Peoples</div>
+          <div class="session-presenter">Jake Smith, Education Curator, Alabama Department of Archives &amp; History</div>
+        </div>
+        <div class="grade-badge">Grades 3&ndash;6</div>
+      </div>
+      <div class="session-meta">
+        <span>September 15 &mdash; 9:00&ndash;10:00 AM</span>
+        <span>September 15 &mdash; 10:15&ndash;11:15 AM</span>
+        <span>September 22 &mdash; 9:00&ndash;10:00 AM</span>
+        <span>September 22 &mdash; 10:15&ndash;11:15 AM</span>
+      </div>
+      <div class="session-body">
+        <p>Beginning in the Paleo Era and culminating with the disintegration of Mississippian culture, this presentation will teach students about the daily life of the First Peoples of what we now call the Southeastern United States. This program will also include an introduction to archaeology, covering what archaeologists study, and what they do both in the field and in the lab.</p>
+        <div class="standards-box">
+          <strong>Alabama Standards</strong>
+          <ul>
+            <li><strong>SS24.3.8a</strong> &mdash; Identify changes that took place in prehistoric/pre-contact cultures in the Southeast between the Paleo, Archaic, Woodland, and Mississippian periods. Examples: modifications in architecture, art, foodways, and tools.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- American Women Who Changed History -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">American Women Who Changed History</div>
+          <div class="session-presenter">Keller Johnson-Thompson, President, Helen Keller Foundation</div>
+        </div>
+        <div class="grade-badge">Grades 1&ndash;6</div>
+      </div>
+      <div class="session-meta">
+        <span>September 16 &mdash; 9:00&ndash;10:00 AM</span>
+      </div>
+      <div class="session-body">
+        <p>American history is filled with remarkable women whose courage, vision, intelligence, and determination opened doors, challenged injustice, advanced education, strengthened communities, and changed the course of our nation. This presentation gives teachers a compelling way to introduce students to women whose stories deserve to be remembered &mdash; not as distant names in a textbook, but as real people who used their voices, talents, and convictions to make a lasting difference.</p>
+        <p>Through these inspiring examples, students will discover that history is shaped by individuals who are willing to lead, serve, question, create, and persevere. Teachers will find this program especially meaningful because it connects character, citizenship, leadership, and resilience in a way that encourages students to see their own potential to influence the world around them.</p>
+      </div>
+    </div>
+
+    <!-- FINtastics Fishes -->
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-title">FINishing Up the Summer with FINtastics Fishes</div>
+          <div class="session-presenter">Greg Graeber, Discovery Hall Programs Educator &mdash; Dauphin Island Sea Lab</div>
+        </div>
+        <div class="grade-badge">All Grades</div>
+      </div>
+      <div class="session-meta">
+        <span>September 23 &mdash; 9:00&ndash;10:00 AM (K&ndash;5 focus)</span>
+        <span>September 23 &mdash; 10:15&ndash;11:15 AM (Middle &amp; High School focus)</span>
+      </div>
+      <div class="session-body">
+        <p>Whale (Shark), it is o-fish-ially back to school time, a great time to learn about fishes of the northern Gulf coast! Do all fish travel in schools? What about fish that walk or fly instead of swim? Are fish smart? How long do they stay in school? What&rsquo;s the biggest fish in the Gulf? Are there really enough fish in the sea? Join DISL marine educator, Greg Graeber, for an up-close look at our coastal fishes and come fishing for answers to your questions!</p>
+        <p><em>The 9:00 AM session is geared toward younger students (K&ndash;5); the 10:15 AM session is more suitable for middle and high school students. Addresses the disciplinary core ideas of molecules to organisms (structures and processes), unity and diversity, and ecosystems (interactions, energy, and dynamics).</em></p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Sign up at <a href="https://bit.ly/ALVFTSepSignup">bit.ly/ALVFTSepSignup</a> &bull; Report attendance at <a href="https://bit.ly/ALVFTSepAttendance">bit.ly/ALVFTSepAttendance</a> &bull; All schedules at <a href="https://bit.ly/ALVFT-home">bit.ly/ALVFT-home</a> &bull; This document at <a href="http://bit.ly/ALVFTSep26">bit.ly/ALVFTSep26</a>
+  </footer>
+
+</body>
+</html>
